@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Box, Button, Container, Table, Thead, Tbody, Tr, Th, Td, Input, VStack } from "@chakra-ui/react";
+import { Box, Button, Container, Table, Thead, Tbody, Tr, Th, Td, Input, VStack, Select } from "@chakra-ui/react";
+import TableComponent from "../components/TableComponent";
 
 const parseCSV = (file) => {
   return new Promise((resolve, reject) => {
@@ -39,24 +40,7 @@ const TableVisualizationPage = () => {
   return (
     <Container centerContent>
       <VStack spacing={4} mt={10}>
-        <Table variant="simple">
-          <Thead>
-            <Tr>
-              {headers.map((header, index) => (
-                <Th key={index}>{header}</Th>
-              ))}
-            </Tr>
-          </Thead>
-          <Tbody>
-            {data.map((row, rowIndex) => (
-              <Tr key={rowIndex}>
-                {headers.map((header, colIndex) => (
-                  <Td key={colIndex}>{row[header]}</Td>
-                ))}
-              </Tr>
-            ))}
-          </Tbody>
-        </Table>
+        <TableComponent data={data} headers={headers} />
       </VStack>
     </Container>
   );
